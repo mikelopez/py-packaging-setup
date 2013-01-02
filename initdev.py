@@ -156,6 +156,7 @@ setup(name='%s',
     print '\n\nHooray! Created project %s in %s' % (self.project_name, self.create_directory)
     print '\n\n==========='
     print '\nUpdate setup.py: modify APP-NAME & name as needed'
+    print '\nUpdate MANIFEST.in: set the APP-NAME string to your actual django app name after creating it'
 
 
 
