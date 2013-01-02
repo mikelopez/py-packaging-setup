@@ -13,6 +13,7 @@ Contents:
 
    installation
    usage
+   changelog
 
 Indices and tables
 ==================
