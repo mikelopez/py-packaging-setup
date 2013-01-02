@@ -3,6 +3,11 @@
 ChangeLog
 =========
 
+0.1.1
+-----
+- Reminder to update the MANIFEST.in file :)
+
+
 
 0.1 
 ---
