@@ -1,6 +1,5 @@
 from setuptools import setup, find_packages
 import sys, os
-import django_siteanalytics
 
 setup(
     name='FOLDER-NAME',
