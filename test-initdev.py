@@ -3,6 +3,8 @@ from initdev import InitDev
 
 import os, sys
 
+CREATE_DIRECTORY = '/home/user/public-repos'
+
 class TestInitDev(TestCase):
   """ test init dev """
 
@@ -51,7 +53,7 @@ class TestInitDev(TestCase):
     files = ['.gitignore', 'docs', 'setup.py']
     cl = InitDev()
     # uncomment or use cl.ask_user
-    cl.create_directory = '/Users/mikelopez/Desktop/dev/public-repos'
+    cl.create_directory = CREATE_DIRECTORY
     #cl.create_directory = cl.ask_user('Enter the create directory: ')
     cl.project_name = 'test_newproject'
     cl.set_data()
