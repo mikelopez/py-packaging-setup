@@ -3,3 +3,4 @@
 *DS_*
 *build*
 *dist*
+*.sqlite*

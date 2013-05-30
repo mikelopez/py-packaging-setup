@@ -129,6 +129,7 @@ class InitDev:
 *build/
 *dist/
 *.egg-info*
+*.sqlite*
 """
     # a very basic setup.py file (not using this here )
     setuppy = """
