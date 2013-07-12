@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import sys, os
 
 setup(
-    name='FOLDER-NAME',
+    name='APP-NAME',
     version='0.1',
     description="UPDATE-DESCRIPTION",
     long_description=open('README.md', 'r').read(),
@@ -11,7 +11,7 @@ setup(
     author_email='',
     url='',
     license='MIT',
-    package_dir={'DJANGO_APP_FOLDER_NAME': 'DJANGO_APP_FOLDER_NAME'},
+    package_dir={'APP-NAME': 'APP-NAME'},
     include_package_data=True,
     packages=find_packages(),
     classifiers=[
