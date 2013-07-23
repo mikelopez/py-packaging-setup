@@ -8,8 +8,11 @@ import os
 import sys
 from termprint import termprint
 from settings import CREATE_DIRECTORY as cdir
+from string_messages import ERR_SET_DESTINATION, ERR_DIRECTORY_EXISTS, INTRO_ABS_QUESTION, \
+                INTRO_ABS_INFO, INTRO_ABS_ENTER_DATA_MSG, INTRO_REL_QUESTION, \
+                INTRO_REL_WARNING, INTRO_REL_ENTER_DATA_MSG
 
-class ProjectBase:
+class ProjectBase(object):
     destination = None
 
     def __init__(self):
@@ -51,8 +54,7 @@ class ProjectBase:
         else:
             # should not copy to relative path cause no settins is set for project root
             if not cdir:
-                termprint("ERROR", "No Absolute path provided and no settings, do either one. \
-                    Set your CREATE_DIRECTORY variable in settings")
+                termprint("ERROR", ERR_SET_DESTINATION)
                 sys.exit(1)
             self.destination = "%s/%s" % (self.get_project_root(), path)
         # remove any trailing slashes for people who dont read    
@@ -61,4 +63,34 @@ class ProjectBase:
     def get_project_root(self):
         """ Return the project root and strip trailng slash """
         return self.remove_trailing_slash(cdir)
+
+    def intro(self):
+        """ Intro questions to ask the user to get started """
+        # ask a user appropriately based on settings
+        if not self.get_project_root():
+            termprint("", INTRO_ABS_QUESTION)
+            termprint("WARNING", "\t%s" % os.getcwd())
+            termprint("INFO", INTRO_ABS_INFO)
+            response = self.ask_user(INTRO_ABS_ENTER_DATA_MSG)
+        else:
+            termprint("", INTRO_REL_QUESTION)
+            termprint("INFO", "\t%s\n" % self.get_project_root())
+            termprint("WARNING", INTRO_REL_WARNING)
+            response = self.ask_user(INTRO_REL_ENTER_DATA_MESSAGE)
+        if response and len(str(response)) > 5:
+            self.set_destination(response)
+
+    def create_base_directories(self):
+        """ Create the base directory that was set to self.destination variable.
+        If the directory exists, exit with an error, we are not overriding 
+        and breaking anything today.
+        Destination should be an absolute path that is set by self.set_destination, which 
+        occurs after the intro()
+        """
+        if os.path.exists(self.destination):
+            termprint("ERROR", ERR_DIRECTORY_EXISTS)
+            termprint("WARNING", "\t%s" % self.destination)
+        else:
+            os.mkdir("mkdir %s" % self.destination)
+
         
