@@ -60,7 +60,6 @@ class ProjectBase(object):
             self.destination = "%s/%s" % (self.get_project_root(), path)
         # remove any trailing slashes for people who dont read    
         self.destination = self.remove_trailing_slash(self.destination)
-        termprint("INFO", "Set destination to %s" % self.destination)
 
     def get_project_root(self):
         """ Return the project root and strip trailng slash """
