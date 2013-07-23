@@ -4,6 +4,7 @@ Create a python module or django pluggable app skeleton
 Author: Marcos Lopez - dev@scidentify.info
 
 """
+from termprint import termprint
 from settings import CREATE_DIRECTORY as cdir
 
 class Project:
@@ -12,8 +13,8 @@ class Project:
 
     def __ask_user(self, msg):
         """
-        ask a question
-        get a response
+        Ask a question
+        Get a response
         return clean string (no spaces, dots, commas)
         """
         s = raw_input(msg)
