@@ -54,7 +54,6 @@ class TestInitDev(TestCase):
     cl = InitDev()
     # uncomment or use cl.ask_user
     cl.create_directory = CREATE_DIRECTORY
-    #cl.create_directory = cl.ask_user('Enter the create directory: ')
     cl.project_name = 'test_newproject'
     cl.set_data()
     cl.run()
@@ -68,8 +67,6 @@ class TestInitDev(TestCase):
 
 
 if __name__ == '__main__':
-  suite = TestSuite()
-  #suite.addTest(TestInitDev)
   suite.addTest(TestInitDev("test_askuser"))
   suite.addTest(TestInitDev("test_set_data"))
   suite.addTest(TestInitDev("test_fullrun"))
