@@ -1,3 +1,6 @@
+Python Packaging & Setup
+------------------------
+
 Read More: http://django-app-initdev.readthedocs.org
 
 Create Python modules or Django Pluggable application skeleton to get started on a project.
