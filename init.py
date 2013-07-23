@@ -4,6 +4,7 @@ Create a python module or django pluggable app skeleton
 Author: Marcos Lopez - dev@scidentify.info
 
 """
+import os
 from termprint import termprint
 from settings import CREATE_DIRECTORY as cdir
 
@@ -20,4 +21,5 @@ class Project:
         s = raw_input(msg)
         return s.replace(' ','').replace('.','').replace(',','')
 
-    pass
+    def get_project_root(self):
+        return cdir
