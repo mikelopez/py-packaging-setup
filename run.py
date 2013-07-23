@@ -8,7 +8,7 @@ Email: dev@scidentify.info
 from create_python_project import *
 
 if __name__ == '__main__':
-    p = PythonProject()
-    p.intro()
+    p = PythonPackage()
+    p.start()
 
     

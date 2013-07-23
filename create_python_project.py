@@ -1,9 +1,15 @@
 from base import *
 
-class PythonPackage(Project):
+class PythonPackage(ProjectBase):
     def __init__(self):
-        super(self, PythonPackage).__init__()
-        self.run()
+        super(PythonPackage, self).__init__()
+        self.intro()
 
-    
+    def start(self):
+        """ Start the process of copying the files needed """
+        self.create_base_directories()
+
+
+
+
 

@@ -37,10 +37,11 @@ class ProjectBase(object):
         """
         if self.has_trailing_slash(dir):
             return dir[:-1]
+        return dir
 
     def has_trailing_slash(self, dir):
         """ Check if dir string has trailing slash by checking first char"""
-        return path[:1] == '/'
+        return dir[-1] == '/'
 
     def set_destination(self, path):
         """ Check if relative or abs and set the path
@@ -49,7 +50,7 @@ class ProjectBase(object):
         CREATE_DIRECTORY value.
         """
         # if provided was an absolute path
-        if self.has_trailing_slash(path)
+        if self.has_trailing_slash(path):
             self.destination = path
         else:
             # should not copy to relative path cause no settins is set for project root
@@ -59,13 +60,16 @@ class ProjectBase(object):
             self.destination = "%s/%s" % (self.get_project_root(), path)
         # remove any trailing slashes for people who dont read    
         self.destination = self.remove_trailing_slash(self.destination)
+        termprint("INFO", "Set destination to %s" % self.destination)
 
     def get_project_root(self):
         """ Return the project root and strip trailng slash """
         return self.remove_trailing_slash(cdir)
 
     def intro(self):
-        """ Intro questions to ask the user to get started """
+        """ Intro questions to ask the user to get started and 
+        sets the destination
+        """
         # ask a user appropriately based on settings
         if not self.get_project_root():
             termprint("", INTRO_ABS_QUESTION)
@@ -73,10 +77,11 @@ class ProjectBase(object):
             termprint("INFO", INTRO_ABS_INFO)
             response = self.ask_user(INTRO_ABS_ENTER_DATA_MSG)
         else:
+            # provide only package name (optional absolute)
             termprint("", INTRO_REL_QUESTION)
             termprint("INFO", "\t%s\n" % self.get_project_root())
             termprint("WARNING", INTRO_REL_WARNING)
-            response = self.ask_user(INTRO_REL_ENTER_DATA_MESSAGE)
+            response = self.ask_user(INTRO_REL_ENTER_DATA_MSG)
         if response and len(str(response)) > 5:
             self.set_destination(response)
 
@@ -89,8 +94,15 @@ class ProjectBase(object):
         """
         if os.path.exists(self.destination):
             termprint("ERROR", ERR_DIRECTORY_EXISTS)
-            termprint("WARNING", "\t%s" % self.destination)
+            termprint("WARNING", "\n\t%s" % self.destination)
+            termprint("ERROR", "\n\nEXITING!!\n")
+            sys.exit(1)
         else:
-            os.mkdir("mkdir %s" % self.destination)
+            os.system("mkdir %s" % self.destination)
+        if os.path.exists(self.destination):
+            termprint("INFO", "\nCreated Directory %s\n" % self.destination)
+        else:
+            termprint("ERROR", "\nFailed to create %s\n" % self.destination)
+            sys.exit(1)
 
         
