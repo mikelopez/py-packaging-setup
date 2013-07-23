@@ -2,11 +2,18 @@ from init import *
 
 if __name__ == '__main__':
     p = Project()
+
+    # ask a user appropriatelybased on settings
     if not p.get_project_root():
-        termprint("", "Provide an absolute path or director will be crested on local directory:\n")
+        termprint("", "\nProvide an absolute path or directory will be created on local directory:")
         termprint("WARNING", "\t%s" % os.getcwd())
-        p.ask_user('Project folder name (full path): ')
+        termprint("INFO", "You can modify settings.py and provide a relative directory instead")
+        response = p.ask_user('\nPackage folder name (full path): ')
+
     else:
-        termprint("", "Creating foder name inside\n")
-        termprint("INFO", "%s\n", p.get_prjoect_root())
-        p.ask_user('Project folder name (folder name): ')
+        termprint("", "\nProvide a package name.")
+        termprint("", "The package will be created inside directory:")
+        termprint("INFO", "%s\n", p.get_project_root())
+        termprint("WARNING", "Note: By Providing an absolute path (/tmp/myapp) will omit settings")
+        response = p.ask_user('\nPackage folder name (folder name): ')
+    p.set_abs_destination(response)

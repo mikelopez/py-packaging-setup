@@ -12,7 +12,7 @@ class Project:
     def __init__(self):
         pass
 
-    def __ask_user(self, msg):
+    def ask_user(self, msg):
         """
         Ask a question
         Get a response

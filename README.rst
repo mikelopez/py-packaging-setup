@@ -8,7 +8,7 @@ Create Python modules or Django Pluggable application skeleton to get started on
 
 Installation
 -------------
-* Modify settings.py and set the directory to copy your files, otherwise you can provide an absolute URL or relative path to create the files in your current working directory.
+* Copy local_settings_sample to local_settings.py ``cp local_settings_sample.py local_settings.py`` and modify ``CREATE_DIRECTORY`` variable to the directory you want, or omit this value and provide absolute paths for your projects destination.
 
 
 * Once the folder has been created, change into that directory and run django-admin to create a new app ``django-admin.py startapp myapp``
