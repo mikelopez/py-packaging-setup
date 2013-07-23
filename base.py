@@ -9,11 +9,15 @@ import sys
 from termprint import termprint
 from settings import CREATE_DIRECTORY as cdir
 
-class Project:
+class ProjectBase:
     destination = None
 
     def __init__(self):
         pass
+
+    def run(self):
+        """ Run that shit! """
+        self.create_base_directories()
 
     def ask_user(self, msg):
         """
@@ -35,8 +39,6 @@ class Project:
         """ Check if dir string has trailing slash by checking first char"""
         return path[:1] == '/'
 
-
-
     def set_destination(self, path):
         """ Check if relative or abs and set the path
         remove any trailing slashes. Remove any prefix slashes
@@ -44,7 +46,7 @@ class Project:
         CREATE_DIRECTORY value.
         """
         # if provided was an absolute path
-        if sel.has_trailing_slash(path)
+        if self.has_trailing_slash(path)
             self.destination = path
         else:
             # should not copy to relative path cause no settins is set for project root
@@ -53,9 +55,8 @@ class Project:
                     Set your CREATE_DIRECTORY variable in settings")
                 sys.exit(1)
             self.destination = "%s/%s" % (self.get_project_root(), path)
-        
-
-
+        # remove any trailing slashes for people who dont read    
+        self.destination = self.remove_trailing_slash(self.destination)
 
     def get_project_root(self):
         """ Return the project root and strip trailng slash """

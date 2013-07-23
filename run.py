@@ -16,6 +16,8 @@ if __name__ == '__main__':
         termprint("INFO", "\t%s\n" % p.get_project_root())
         termprint("WARNING", "Note: By Providing an absolute path (/tmp/myapp) will omit settings")
         response = p.ask_user('\nPackage folder name (folder name): ')
-        
+
     if response and len(str(response)) > 5:
         p.set_destination(response)
+
+    self.run()
