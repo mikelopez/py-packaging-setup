@@ -12,6 +12,16 @@ from string_messages import ERR_SET_DESTINATION, ERR_DIRECTORY_EXISTS, INTRO_ABS
                 INTRO_ABS_INFO, INTRO_ABS_ENTER_DATA_MSG, INTRO_REL_QUESTION, \
                 INTRO_REL_WARNING, INTRO_REL_ENTER_DATA_MSG
 
+class DirectoryExistsException(Exception):
+    def __init__(self, message):
+        s = termprint("ERROR", messages, return_text=True)
+        Exception.__init__(self, s)
+
+class NotCreatedException(Exception):
+    def __init__(self, message):
+        s = termprint("ERROR", messages, return_text=True)
+        Exception.__init__(self, s)
+
 class ProjectBase(object):
     destination = None
 
@@ -65,6 +75,10 @@ class ProjectBase(object):
         """ Return the project root and strip trailng slash """
         return self.remove_trailing_slash(cdir)
 
+    def get_project_name(self):
+        """ Get the project name based on the folder name """
+        return str(self.destination).split('/')[-1]
+
     def intro(self):
         """ Intro questions to ask the user to get started and 
         sets the destination
@@ -83,6 +97,7 @@ class ProjectBase(object):
             response = self.ask_user(INTRO_REL_ENTER_DATA_MSG)
         if response and len(str(response)) > 5:
             self.set_destination(response)
+        return response
 
     def create_base_directories(self):
         """ Create the base directory that was set to self.destination variable.
@@ -95,13 +110,30 @@ class ProjectBase(object):
             termprint("ERROR", ERR_DIRECTORY_EXISTS)
             termprint("WARNING", "\n\t%s" % self.destination)
             termprint("ERROR", "\n\nEXITING!!\n")
-            sys.exit(1)
+            return False
         else:
             os.system("mkdir %s" % self.destination)
+            return True
         if os.path.exists(self.destination):
             termprint("INFO", "\nCreated Directory %s\n" % self.destination)
+            return True
         else:
             termprint("ERROR", "\nFailed to create %s\n" % self.destination)
-            sys.exit(1)
+            return False
+
+    def create_readme(self):
+        """ Create the readme file """
+        orig = open("%s/README_SAMPLE.rst", "r").read()
+        oo = orig.replace('PROJECT_NAME', self.get_project_name())
+        ooo = open('%s/README.rst', 'w')
+        ooo.write(oo)
+        ooo.close()
+        if os.path.exists('%s/README.rst' % self.destination):
+            termprint("INFO", '... Copied readme base\n')
+            return True
+        else:
+            termprint("ERROR", '... FAILED to copy read me to %s\n' % self.destination)
+            return False
+            
 
         
