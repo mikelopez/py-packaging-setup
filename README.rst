@@ -29,10 +29,10 @@ After creating a python module, Assuming the packagename is ''mypackage'', it wi
 
 Using
 -----
-.. code-block python::
+.. code-block:: python
     
-    from mypackage.main import ClassInsideMain
-    cl = ClassInideMain()
+    from mypackage.main import SomeClassOrSomething
+    cl = SomeClassOrSomething()
     cl.goodbye()
 
 
