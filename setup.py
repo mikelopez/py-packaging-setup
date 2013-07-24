@@ -4,7 +4,7 @@ import sys, os
 setup(
     name='APP-NAME',
     version='0.1',
-    description="UPDATE-DESCRIPTION",
+    description="APP-NAME Description",
     long_description=open('README.md', 'r').read(),
     keywords='',
     author='',
@@ -34,3 +34,4 @@ setup(
         "Topic :: Utilities",
     ]
 )
+

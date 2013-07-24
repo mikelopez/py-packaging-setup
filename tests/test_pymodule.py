@@ -16,12 +16,15 @@ class TestInitDev(TestCase):
   def setUp(self):
     pass
 
+  def break_row(self):
+    """ Print a row separation for logs and stdout """
+    termprint("INFO", "-".join(["-" for x in range(0, 50)]))
 
   def test_askuser(self):
     """
     Test ask user prompt
     """
-    termprint("INFO", "-".join(["-" for x in range(0, 50)]))
+    self.break_row()
     termprint("INFO", '\n.... Testing test_askuser(): Enter a random package name')
     cl = PythonPackage()
     # dpending what you entered    
@@ -34,7 +37,7 @@ class TestInitDev(TestCase):
     """ 
     Make sure we catch if the directory exists or not
     """
-    termprint("INFO", "-".join(["-" for x in range(0, 50)]))
+    self.break_row()
     termprint("INFO", "\n\n.... Testing for duplicate catch. \n\
       Enter another unique random package name (Not the same as previous)")
     cl = PythonPackage()
@@ -49,7 +52,7 @@ class TestInitDev(TestCase):
     """ 
     Create the readme file 
     """
-    termprint("INFO", "-".join(["-" for x in range(0, 50)]))
+    self.break_row()
     termprint("INFO", "\n\n.... Test the readme, enter another unique package name")
     cl = PythonPackage()
     self.assertTrue(cl.create_base_directories())
@@ -58,6 +61,11 @@ class TestInitDev(TestCase):
     self.assertTrue(cl.user_response in open("%s/README.rst"%self.destination, "r").open())
     termprint("", "Cleaning files")
     os.system('rm -rf %s' % cl.destination)
+
+
+  def test_create_setup(self):
+    """ Create the setup file """
+    self.break_row()
 
 
 
