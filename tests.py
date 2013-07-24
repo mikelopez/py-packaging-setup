@@ -25,7 +25,6 @@ class TestInitDev(TestCase):
     """
     Test ask user prompt
     """
-    self.break_row()
     termprint("INFO", '\n.... Testing test_askuser(): Enter a random package name')
     cl = PythonPackage()
     cl.start()
@@ -33,13 +32,14 @@ class TestInitDev(TestCase):
     self.assertEquals(cl.destination.split('/')[-1], cl.user_response)
     termprint("", "Cleaning files")
     os.system('rm -rf %s' % cl.destination)
+    self.break_row()
+
 
 
   def test_directory_exists(self):
     """ 
     Make sure we catch if the directory exists or not
     """
-    self.break_row()
     termprint("INFO", "\n\n.... Testing for duplicate catch. \n\
       Enter another unique random package name (Not the same as previous)")
     cl = PythonPackage()
@@ -50,13 +50,13 @@ class TestInitDev(TestCase):
     self.assertFalse(cl.create_base_directories())
     termprint("", "Cleaning files")
     os.system('rm -rf %s' % cl.destination)
+    self.break_row()
 
 
   def test_create_readme(self):
     """ 
     Create the readme file 
     """
-    self.break_row()
     termprint("INFO", "\n\n.... Test the readme, enter another unique package name")
     cl = PythonPackage()
     cl.start()
@@ -67,12 +67,12 @@ class TestInitDev(TestCase):
     self.assertTrue(cl.user_response in open("%s/README.rst"%cl.destination, "r").open())
     termprint("", "Cleaning files")
     os.system('rm -rf %s' % cl.destination)
+    self.break_row()
 
 
   def test_create_setup(self):
     """ Create the setup file """
     termprint("INFO", "\n\n.... Test the readme, enter another unique package name")
-    self.break_row()
     cl = PythonPackage()
     cl.start()
     self.assertTrue(cl.create_base_directories())
@@ -81,6 +81,7 @@ class TestInitDev(TestCase):
     self.assertTrue(os.path.exists('%s/setup.py' % cl.destination))
     termprint("", "Cleaning files")
     os.system('rm -rf %s' % cl.destination)
+    self.break_row()
 
 
 

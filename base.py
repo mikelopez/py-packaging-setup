@@ -112,6 +112,7 @@ class ProjectBase(object):
             termprint("ERROR", "\n\nEXITING!!\n")
             return False
         else:
+            termprint("INFO", "Trying to create directory")
             os.system("mkdir %s" % self.destination)
             return True
         if os.path.exists(self.destination):
