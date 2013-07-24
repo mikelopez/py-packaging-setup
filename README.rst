@@ -14,5 +14,28 @@ Installation
 * Once the folder has been created, change into that directory and run django-admin to create a new app ``django-admin.py startapp myapp``
 
 
+Creating Python Module
+----------------------
+After creating a python module, Assuming the packagename is ''mypackage'', it will create directories in the following::
+
+    /absolute/path/destination/mypackage/
+                                    mypackage/
+                                            __init__.py
+                                            main.py
+
+.. note:: You can rename to anything else, you can also reconfigure this setup however you'd like. 
+
+
+Using
+-----
+.. code-block python::
+    
+    from mypackage.main import ClassInsideMain
+    cl = ClassInideMain()
+    cl.goodbye()
+
+
+
+
 8)
 
