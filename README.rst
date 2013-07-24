@@ -16,11 +16,7 @@ Installation
 
 Running it & Creating Python Module
 ----------------------
-The command below shows how to get the script started
-.. code-block:: python
-
-    python run.py
-
+The command below shows how to get the script started ``python run.py ``
 
 After creating a python module, Assuming the packagename is ''mypackage'', it will create directories in the following::
 
