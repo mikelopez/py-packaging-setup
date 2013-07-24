@@ -150,19 +150,13 @@ class ProjectBase(object):
         ooo = open('%s/setup.py', 'w')
         ooo.write(oo)
         ooo.close()
-        # if the base py file does not exists
-        basepy_dir = "%s/%s/%s" % self.
-        basepy_file = '%s/%s/%s/main.py' % self.destination, self.get_project_name(), \
-                      self.get_project_name()
-        if not os.path.exists('%s/%s/%s' % self.destination, self.get_project_name(), \
-                              self.get_project_name()):
-        if not os.path.exists('%s/%s' % self.destination, self.get_project_name()):
+        if not os.path.exists('%s/%s.py' % self.destination, self.get_project_name()):
             os.system('touch %s/%s.py' % self.destination, self.get_project_name())
         if os.path.exists('%s/README.rst' % self.destination):
-            termprint("INFO", '... Copied readme base\n')
+            termprint("INFO", '... Copied setup base\n')
             return True
         else:
-            termprint("ERROR", '... FAILED to copy read me to %s\n' % self.destination)
+            termprint("ERROR", '... FAILED to copy setup to %s\n' % self.destination)
             return False
 
 
