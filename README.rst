@@ -11,7 +11,7 @@ Installation
 * Copy local_settings_sample to local_settings.py ``cp local_settings_sample.py local_settings.py`` and modify ``CREATE_DIRECTORY`` variable to the directory you want, or omit this value and provide absolute paths for your projects destination.
 
 
-* Once the folder has been created, change into that directory and run django-admin to create a new app ``django-admin.py startapp myapp``
+* Once the folder has been created, change into that directory and run django-admin to create a new app ``django-admin.py startapp myapp``. NOTE: be sure to use the same name as package or modify the setup.py file that is created in the ``py_modules`` list
 
 
 Creating Python Module
