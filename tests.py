@@ -18,6 +18,7 @@ class TestInitDev(TestCase):
 
   def break_row(self):
     """ Print a row separation for logs and stdout """
+    termprint("", "\n\n")
     termprint("INFO", "-".join(["-" for x in range(0, 50)]))
 
   def test_askuser(self):
