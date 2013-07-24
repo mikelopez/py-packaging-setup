@@ -1,10 +1,4 @@
-import os
 from distutils.core import setup
-
-prjdir = os.path.dirname(__file__)
-
-def read(filename):
-    return open(os.path.join(prjdir, filename)).read()
 
 setup(name='APP-NAME',
       version='0.1',
