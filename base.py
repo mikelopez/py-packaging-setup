@@ -11,6 +11,8 @@ from settings import CREATE_DIRECTORY as cdir
 from string_messages import ERR_SET_DESTINATION, ERR_DIRECTORY_EXISTS, INTRO_ABS_QUESTION, \
                 INTRO_ABS_INFO, INTRO_ABS_ENTER_DATA_MSG, INTRO_REL_QUESTION, \
                 INTRO_REL_WARNING, INTRO_REL_ENTER_DATA_MSG
+# the root dir of the project where we copy files from
+PROJECT_ROOTDIR = os.path.realpath(os.path.dirname(__file__))
 
 class DirectoryExistsException(Exception):
     def __init__(self, message):
@@ -106,13 +108,13 @@ class ProjectBase(object):
         Destination should be an absolute path that is set by self.set_destination, which 
         occurs after the intro()
         """
+        termprint("INFO", "\n\t....Trying to create directory %s\n" % self.destination)
         if os.path.exists(self.destination):
             termprint("ERROR", ERR_DIRECTORY_EXISTS)
             termprint("WARNING", "\n\t%s" % self.destination)
             termprint("ERROR", "\n\nEXITING!!\n")
             return False
         else:
-            termprint("INFO", "Trying to create directory")
             os.system("mkdir %s" % self.destination)
             return True
         if os.path.exists(self.destination):
@@ -124,9 +126,10 @@ class ProjectBase(object):
 
     def create_readme(self):
         """ Create the readme file """
-        orig = open("%s/README_SAMPLE.rst", "r").read()
+
+        orig = open("%s/README_SAMPLE.rst" % PROJECT_ROOTDIR, "r").read()
         oo = orig.replace('PROJECT_NAME', self.get_project_name())
-        ooo = open('%s/README.rst', 'w')
+        ooo = open('%s/README.rst' % self.destination, 'w')
         ooo.write(oo)
         ooo.close()
         if os.path.exists('%s/README.rst' % self.destination):
@@ -146,14 +149,14 @@ class ProjectBase(object):
          - /absolute_path_destination/packagename/packagename/packagename.py
          - /absolute_path_destination/packagename/setup.py
         """
-        orig = open("%s/setup.py", "r").read()
+        orig = open("%s/setup.py" % PROJECT_ROOTDIR, "r").read()
         oo = orig.replace('APP-NAME', self.get_project_name())
-        ooo = open('%s/setup.py', 'w')
+        ooo = open('%s/setup.py' % self.destination, 'w')
         ooo.write(oo)
         ooo.close()
-        if not os.path.exists('%s/%s.py' % self.destination, self.get_project_name()):
-            os.system('touch %s/%s.py' % self.destination, self.get_project_name())
-        if os.path.exists('%s/README.rst' % self.destination):
+        if not os.path.exists('%s/%s.py' % (self.destination, self.get_project_name())):
+            os.system('touch %s/%s.py' % (self.destination, self.get_project_name()))
+        if os.path.exists('%s/setup.py' % self.destination):
             termprint("INFO", '... Copied setup base\n')
             return True
         else:

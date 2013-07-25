@@ -9,6 +9,7 @@ from create_python_project import *
 
 if __name__ == '__main__':
     p = PythonPackage()
+    # call start to start creating the dirs
     p.start()
 
     
