@@ -165,5 +165,6 @@ class ProjectBase(object):
 
 
             
-
-        
+    def create_gitignore(self):
+        """ Creating the gitignore """
+        pass
