@@ -24,6 +24,7 @@ After creating a python module, Assuming the packagename is ''mypackage'', it wi
                                        mypackage.py
                                        setup.py
                                        README.rst
+                                       .gitignore
 
 
 .. note:: You can rename to anything else, you can also reconfigure this setup however you'd like as a module or add extra files and directories, just be sure to update your setup.py file. 

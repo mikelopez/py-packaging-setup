@@ -1,4 +1,4 @@
 Readme for PROJECT_NAME
 ------------------------------
 
-``from app-name import *``
+``from APP-NAME import *``

@@ -164,7 +164,10 @@ class ProjectBase(object):
             return False
 
 
-            
     def create_gitignore(self):
         """ Creating the gitignore """
-        pass
+        if not os.path.exists('%s/.gitignore' % self.destination):
+            os.system('cp %s/.gitignore %s/.gitignore' % (PROJECT_ROOTDIR, self.destination))
+            termprint("INFO", "Created gitignore file since it wasn't found")
+            return True
+        return False
