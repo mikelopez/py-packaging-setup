@@ -26,7 +26,7 @@ class NotCreatedException(Exception):
 
 class ProjectBase(object):
     destination = None
-
+    is_django = False
     def __init__(self):
         pass
 
