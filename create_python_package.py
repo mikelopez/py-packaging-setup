@@ -33,6 +33,12 @@ class PythonPackage(ProjectBase):
 
         termprint("INFO", "Successfully created the package at:\n")
         termprint("WARNING", "\t%s" % self.destination)
+        if getattr(self, 'is_django', False):
+            termprint("ERROR", "Remember to run django-admin \
+                                to create your app inside of %s." % (
+                                getattr(self, "destination")))
+            termprint("ERROR", "\tdjango-admin.py startapp %s" % (
+                                getattr(self, "destination")))
 
 
 
