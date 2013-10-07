@@ -8,9 +8,11 @@ import os
 import sys
 from termprint import termprint
 from settings import CREATE_DIRECTORY as cdir
-from string_messages import ERR_SET_DESTINATION, ERR_DIRECTORY_EXISTS, INTRO_ABS_QUESTION, \
-                INTRO_ABS_INFO, INTRO_ABS_ENTER_DATA_MSG, INTRO_REL_QUESTION, \
-                INTRO_REL_WARNING, INTRO_REL_ENTER_DATA_MSG
+from string_messages import ERR_SET_DESTINATION, ERR_DIRECTORY_EXISTS,\
+                            INTRO_ABS_QUESTION,  INTRO_ABS_INFO,  \
+                            INTRO_ABS_ENTER_DATA_MSG, INTRO_REL_QUESTION,\
+                            INTRO_REL_WARNING, INTRO_REL_ENTER_DATA_MSG, \
+                            DJANGO_REMINDER
 # the root dir of the project where we copy files from
 PROJECT_ROOTDIR = os.path.realpath(os.path.dirname(__file__))
 

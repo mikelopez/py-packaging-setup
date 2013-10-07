@@ -35,7 +35,9 @@ class PythonPackage(ProjectBase):
         termprint("WARNING", "\t%s\n\n" % self.destination)
         if getattr(self, 'is_django', False):
             termprint("ERROR", DJANGO_REMINDER.replace("#APPNAME#",
-                               getattr(self, "destination")))
+                               self.get_project_name()))
+            os.system('rm %s/%s.py' % (getattr(self, 'destination'), 
+                                      self.get_project_name()))
 
 
 
