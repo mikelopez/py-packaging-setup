@@ -150,9 +150,12 @@ class ProjectBase(object):
          - /absolute_path_destination/packagename/setup.py
         """
         # original setup file to copy. If django = True, use setup_django.py
-        orig = open("%s/setup.py" % PROJECT_ROOTDIR, "r").read()
+        original_file = "setup.py"
+        if django:
+            original_file = "setup_django.py"
+        orig = open("%s/%s" % (PROJECT_ROOTDIR, original_file), "r").read()
         oo = orig.replace('APP-NAME', self.get_project_name())
-        # writes to this file
+        # writes to this file (destination is always setup.py
         ooo = open('%s/setup.py' % self.destination, 'w')
         ooo.write(oo)
         ooo.close()
