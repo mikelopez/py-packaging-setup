@@ -139,7 +139,7 @@ class ProjectBase(object):
             termprint("ERROR", '... FAILED to copy read me to %s\n' % self.destination)
             return False
 
-    def create_setup(self):
+    def create_setup(self, django=False):
         """ 
         Create the setup.py file 
         Copy the setup.py file
@@ -149,8 +149,10 @@ class ProjectBase(object):
          - /absolute_path_destination/packagename/packagename/packagename.py
          - /absolute_path_destination/packagename/setup.py
         """
+        # original setup file to copy. If django = True, use setup_django.py
         orig = open("%s/setup.py" % PROJECT_ROOTDIR, "r").read()
         oo = orig.replace('APP-NAME', self.get_project_name())
+        # writes to this file
         ooo = open('%s/setup.py' % self.destination, 'w')
         ooo.write(oo)
         ooo.close()

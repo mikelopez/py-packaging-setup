@@ -20,10 +20,10 @@ class PythonPackage(ProjectBase):
                 self.remove_stuff_post_error()
                 termprint("ERROR", "Failed to create readme!\n\nExiting\n")
             is_django = self.ask_user("Is this a django app? Type y or n: ")
+            is_dj = False
             if str(is_django).lower() == "y":
-                setups = self.create_django_setup()
-            else:
-                setups = self.create_setup()
+                is_dj=True
+            setups = self.create_setup(django=is_dj)
             if not setups:
                 self.remove_stuff_post_error()
                 termprint("ERROR", "Failed to create setup.py file\n\nExiting!")
