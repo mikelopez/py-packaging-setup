@@ -23,6 +23,7 @@ class PythonPackage(ProjectBase):
             is_dj = False
             if str(is_django).lower() == "y":
                 is_dj=True
+            setattr(self, 'is_django', is_dj)
             setups = self.create_setup(django=is_dj)
             if not setups:
                 self.remove_stuff_post_error()
