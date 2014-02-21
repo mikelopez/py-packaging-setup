@@ -5,7 +5,7 @@ setup(
     name='APP-NAME',
     version='0.1',
     description="APP-NAME Description",
-    long_description=open('README.md', 'r').read(),
+    long_description="",
     keywords='',
     author='',
     author_email='',
